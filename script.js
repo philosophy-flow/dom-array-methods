@@ -35,6 +35,15 @@ function doubleMoney() {
   updateDOM();
 }
 
+// Sort users by richest
+function sortByRichest() {
+  data.sort((a, b) => {
+    return b.money - a.money;
+  });
+
+  updateDOM();
+}
+
 
 // Add new obj to data arr
 function addData(obj) {
@@ -51,7 +60,8 @@ function updateDOM(providedData = data) {
   providedData.forEach(item => {
     const element = document.createElement('div');
     element.classList.add('person');
-    element.innerHTML = `<strong>${item.name}</strong> ${formatMoney(item.money)}`;
+    element.innerHTML =
+    `<strong>${item.name}</strong> ${formatMoney(item.money)}`;
     main.appendChild(element);
   });
 }
@@ -64,3 +74,4 @@ function formatMoney(number) {
 // Event Listeners
 addUserBtn.addEventListener('click', getRandomUser);
 doubleBtn.addEventListener('click', doubleMoney);
+sortBtn.addEventListener('click', sortByRichest);
